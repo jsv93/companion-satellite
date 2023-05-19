@@ -27,8 +27,7 @@ RUN sed -i "s/'use_udev%': 1/'use_udev%': 0/" node_modules/node-hid/libusb.gypi
 RUN mkdir node_modules/node-hid/libusb_config && touch node_modules/node-hid/libusb_config/config.h
 # TODO: this is very brittle working by line number, this needs a better matcher
 RUN sed -i "36s/.*/'dependencies': [ 'libusb.gypi\:libusb', ]/g" node_modules/node-hid/binding.gyp
-RUN cd node_modules/node-hid && rm -R build && yarn gypconfigure && yarn gypbuild
-
+RUN cd node_modules/node-hid
 FROM node:16-bullseye-slim
 
 WORKDIR /app
